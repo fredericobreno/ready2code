@@ -28,6 +28,7 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
-    "inquirer": "^9.2.13"
+    "inquirer": "^9.2.13",
+    "ora": "^8.0.1"
   }
 }
