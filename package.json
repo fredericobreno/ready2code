@@ -1,25 +1,33 @@
 {
   "name": "ready2code",
   "version": "1.0.0",
-  "description": "",
+  "description": "get ready to code with eslint, husky and lint-staged",
   "main": "dist/index.js",
+  "type": "module",
   "scripts": {
-    "build": "npx tsc",
-    "dev": "nodemon src/index.ts",
+    "build": "tsc --module esnext",
+    "dev": "tsx src/index.ts",
     "start": "node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "husky"
+  },
+  "bin": {
+    "ready2code": "dist/index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@rocketseat/eslint-config": "^2.1.0",
+    "@types/inquirer": "^9.0.7",
     "@types/node": "^20.11.10",
     "husky": "^9.0.7",
     "lint-staged": "^15.2.0",
     "nodemon": "^3.0.3",
-    "ts-node": "^10.9.2",
+    "tsx": "^4.7.0",
     "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "inquirer": "^9.2.13"
   }
 }
