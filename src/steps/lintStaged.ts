@@ -5,15 +5,16 @@ import { Step } from './types'
 
 const execPromise = util.promisify(exec)
 
-export const Husky: Step = {
+export const LintStaged: Step = {
   install: async (options) => {
     const packageManager = options.packageManager || 'npm'
     const installCmd = packageManager === 'yarn' ? 'add' : 'install'
 
-    await execPromise(`${packageManager} ${installCmd} -D husky`)
+    await execPromise(`${packageManager} ${installCmd} -D lint-staged`)
   },
   configure: async () => {
-    await execPromise(`npx husky init`)
-    fs.writeFileSync('.husky/pre-commit', 'npx lint-staged\n')
+    const lintStagedFile = { '*.{js,jsx,ts,tsx}': 'npx eslint . --fix' }
+
+    fs.writeFileSync('.lintstagedrc', JSON.stringify(lintStagedFile, null, 2))
   },
 }

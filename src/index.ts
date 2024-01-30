@@ -1,6 +1,6 @@
 import inquirer from 'inquirer'
-import { Eslint } from './steps/eslint'
-import { Husky } from './steps/husky'
+import { steps } from './steps'
+import ora from 'ora'
 
 inquirer
   .prompt([
@@ -22,10 +22,27 @@ inquirer
     },
   ])
   .then(async (answers) => {
-    const { packageManager, eslintStack } = answers
+    for (const { name, step } of steps) {
+      const installSpinner = ora(`installing ${name}...`).start()
+      const configSpinner = ora(`configuring ${name}...`)
 
-    await Eslint.install({ packageManager })
-    await Eslint.configure({ eslintStack })
-    await Husky.install({ packageManager })
-    await Husky.configure()
+      try {
+        await step.install(answers)
+        installSpinner.succeed(`${name} installed successfully!`)
+      } catch (err) {
+        installSpinner.fail(`failed to install ${name}`)
+        console.error(err)
+        process.exit(1)
+      }
+
+      try {
+        configSpinner.start()
+        await step.configure(answers)
+        configSpinner.succeed(`${name} configured successfully!`)
+      } catch (err) {
+        configSpinner.fail(`failed to configure ${name}`)
+        console.error(err)
+        process.exit(1)
+      }
+    }
   })
