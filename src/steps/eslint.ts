@@ -35,10 +35,19 @@ export const Eslint = {
       const eslintConfig = JSON.parse(eslintFile)
 
       if (eslintConfig.extends) {
-        eslintConfig.extends.push(`@rocketseat/eslint-config/${eslintStack}`)
+        if (Array.isArray(eslintConfig.extends)) {
+          eslintConfig.extends.push(`@rocketseat/eslint-config/${eslintStack}`)
+        } else {
+          eslintConfig.extends = [
+            eslintConfig.extends,
+            `@rocketseat/eslint-config/${eslintStack}`,
+          ]
+        }
       } else {
         eslintConfig.extends = [`@rocketseat/eslint-config/${eslintStack}`]
       }
+
+      eslintConfig.extends = [...new Set([...eslintConfig.extends])]
 
       fs.writeFileSync('.eslintrc.json', JSON.stringify(eslintConfig, null, 2))
       spinner.succeed('eslint configured successfully!')

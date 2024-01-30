@@ -1,5 +1,6 @@
 import inquirer from 'inquirer'
-import { Eslint } from './steps'
+import { Eslint } from './steps/eslint'
+import { Husky } from './steps/husky'
 
 inquirer
   .prompt([
@@ -25,4 +26,6 @@ inquirer
 
     await Eslint.install({ packageManager })
     await Eslint.configure({ eslintStack })
+    await Husky.install({ packageManager })
+    await Husky.configure()
   })
