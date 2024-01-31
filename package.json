@@ -1,6 +1,6 @@
 {
   "name": "ready2code",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "get ready to code with eslint, husky and lint-staged",
   "main": "dist/index.js",
   "type": "module",
