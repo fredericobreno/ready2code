@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import inquirer from 'inquirer'
 import { steps } from './steps'
 import ora from 'ora'
