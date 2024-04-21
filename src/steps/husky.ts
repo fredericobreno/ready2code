@@ -6,8 +6,8 @@ import { Step } from './types'
 const execPromise = util.promisify(exec)
 
 export const Husky: Step = {
-  install: async (options) => {
-    const packageManager = options.packageManager || 'npm'
+  install: async (answers) => {
+    const packageManager = answers.packageManager || 'npm'
     const installCmd = packageManager === 'yarn' ? 'add' : 'install'
 
     await execPromise(`${packageManager} ${installCmd} -D husky`)

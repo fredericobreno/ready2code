@@ -21,6 +21,11 @@ inquirer
         { name: 'Node.js', value: 'node' },
       ],
     },
+    {
+      type: 'confirm',
+      name: 'hasTypescript',
+      message: 'Do you want to use TypeScript?',
+    },
   ])
   .then(async (answers) => {
     for (const { name, step } of steps) {
