@@ -11,7 +11,7 @@ export const Eslint: Step = {
     const installCmd = packageManager === 'yarn' ? 'add' : 'install'
 
     await execPromise(
-      `${packageManager} ${installCmd} -D eslint @rocketseat/eslint-config`,
+      `${packageManager} ${installCmd} -D eslint@8 @rocketseat/eslint-config`,
     )
   },
   configure: async (options) => {

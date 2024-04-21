@@ -1,6 +1,6 @@
 {
   "name": "ready2code",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "author": "Frederico Breno <fredrochaceara@gmail.com> (https://fredericobreno.github.io/)",
   "description": "Instantly set up your project with eslint, husky and lint-staged.",
   "homepage": "https://github.com/fredericobreno/ready2code",
@@ -14,7 +14,7 @@
     "dev": "tsx src/index.ts",
     "start": "yarn build && node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "husky"
+    "prepare": "yarn build && husky"
   },
   "bin": {
     "ready2code": "dist/index.js"
